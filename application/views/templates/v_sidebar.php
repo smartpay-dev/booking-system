@@ -66,11 +66,10 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <?php if($this->session->userdata('user_level') == 'admin' || 'dev'): ?>
+            <?php if($this->session->userdata('user_level') == 'admin'): ?>
             <div class="sidebar-heading">
                 Addons
             </div>
-
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('user'); ?>">
                         <i class="fas fa-fw fa-user"></i>
@@ -86,28 +85,7 @@
                 <?php endif; ?>
 
                 <!-- RND & DEVS TEAMS -->
-            <!-- <?php if($this->session->userdata('user_teams') == 'Super Admin ' || 'Dev'): ?>
-            <div class="sidebar-heading">
-                RND & DEVS
-            </div>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('dashboard'); ?>">
-                        <i class="fas fa-fw fa-home"></i>
-                        <span>Dashboard</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('user'); ?>">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>User Manage</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('maintenance'); ?>">
-                        <i class="fas fa-fw fa-history"></i>
-                        <span>Log Update History</span>
-                    </a>
-                </li>
-                <?php endif; ?> -->
+           
 
             <!-- Nav Item - Charts -->
             <!-- <li class="nav-item">
