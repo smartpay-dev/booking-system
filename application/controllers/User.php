@@ -7,7 +7,7 @@ class User extends CI_Controller {
         parent::__construct();
         // Memuat helper dan library yang diperlukan
         $this->load->helper('url');
-        $this->load->library('session');
+        // $this->load->library('session');
         $this->load->model('M_User');  // Pastikan model M_User ada di folder models
     }
 
@@ -22,5 +22,6 @@ class User extends CI_Controller {
         // Memuat view dengan data yang telah disiapkan
         $this->load->view('templates/main', $data);
     }
+    
 
 }
