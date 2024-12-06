@@ -26,6 +26,14 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="priority">Priority</label>
+            <select class="form-control" name="priority" id="priority" required>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="issue_title">Issue Title</label>
             <input class="form-control" id="issue_title" name="issue_title" required></input>
         </div>

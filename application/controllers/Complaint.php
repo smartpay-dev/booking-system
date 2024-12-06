@@ -37,16 +37,34 @@ class Complaint extends CI_Controller {
     
     // input database
     public function submit_complaint() {
+        // Hitung deadline berdasarkan priority
+        $priority = $this->input->post('priority');
+        date_default_timezone_set('Asia/Jakarta');
+        $deadline = date('Y-m-d');
+        
+        switch($priority) {
+            case 'High':
+                $deadline = date('Y-m-d', strtotime('+2 days'));
+                break;
+            case 'Medium': 
+                $deadline = date('Y-m-d', strtotime('+4 days'));
+                break;
+            case 'Low':
+                $deadline = date('Y-m-d', strtotime('+6 days'));
+                break;
+        }
+
         $data = array(
             'reporter_name' => $this->input->post('reporter_name'),
-            'reporter_email' => $this->input->post('reporter_email'),
+            'reporter_email' => $this->input->post('reporter_email'), 
             'reporter_phone' => $this->input->post('reporter_phone'),
             'issue_date' => $this->input->post('issue_date'),
             'category' => $this->input->post('category'),
+            'priority' => $priority,
             'issue_title' => $this->input->post('issue_title'),
-            'issue_description' => $this->input->post('issue_description')
+            'issue_description' => $this->input->post('issue_description'),
+            'deadline_date' => $deadline
         );
-
 
         if ($this->M_complaint->saveComplaint($data)) {
             $data['id'] = $this->M_complaint->getLastInsertedId();
@@ -63,13 +81,16 @@ class Complaint extends CI_Controller {
     private function sendEmail($to, $category, $data) {
 
         $category_email = array(
-            'Network' => 'meapps09@gmail.com',
+            'Network' => 'raharja.permana@centreparkcorp.com',
             'Parkee System' => 'eka.saputra@centreparkcorp.com',
             'IOT System' => 'rofiq.rifiansyah@centreparkcorp.com'
         );
 
-        // $cc = ['achmad.chairul@centreparkcorp.com', 'rofiq.rifiansyah@centreparkcorp.com'];
-        $cc = [''];
+        $cc_email = array_merge(['rofik47@gmail.com','rofikajja48@gmail.com']);
+        $cc_emails_string = implode(',', $cc_email);
+        $cc =  $cc_emails_string;
+
+        // $cc = [''];
         $this->email->from('cs.ho@centreparkcorp.com', 'Helpdesk Admin');
         $this->email->to($category_email[$category]);
         $this->email->cc($cc);
@@ -109,8 +130,17 @@ class Complaint extends CI_Controller {
     // update satatus
     public function update_status($id) {
         $status = $this->input->post('status');
+        date_default_timezone_set('Asia/Jakarta');
         if ($this->M_complaint->updateStatus($id, $status)) {
             $complaint = $this->M_complaint->getComplaintById($id);
+            
+            // Insert ke tabel log_update
+            $log_data = array(
+                'id' => $id,
+                'status' => $status,
+                'created_at' => date('Y-m-d H:i:s')
+            );
+            $this->insertLogUpdate($log_data);
             
             $this->sendStatusUpdateEmail($complaint);
             
@@ -121,10 +151,15 @@ class Complaint extends CI_Controller {
         
         redirect('complaint/detail/' . $id);
     }
+
+    public function insertLogUpdate($data) {
+        $this->db->insert('log_update', $data);
+        return $this->db->affected_rows() > 0;
+    }
     
     // send email update status
     private function sendStatusUpdateEmail($complaint) {
-        $this->email->from('developmentcentrepark@gmail.com', 'Helpdesk Admin');
+        $this->email->from('cs.ho@centreparkcorp.com', 'Helpdesk Admin');
         $this->email->to($complaint['reporter_email']);
         $this->email->subject("Update on Your Complaint: " . $complaint['issue_title']);
         

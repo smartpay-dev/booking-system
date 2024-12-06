@@ -51,6 +51,7 @@
     <p><strong>Report Date:</strong> <?= $complaint['issue_date']; ?></p>
     <p><strong>Issue Title:</strong> <?= $complaint['issue_title']; ?></p>
     <p><strong>Issue Description:</strong><br><?= $complaint['issue_description']; ?></p>
+    <p><strong>Deadline:</strong> <?= $complaint['deadline_date']; ?></p>
 
     <form action="<?= base_url('complaint/update_status/' . $complaint['id']); ?>" method="post">
         <label for="status">Update Status:</label>
@@ -71,6 +72,30 @@
         <option value="IOT System">IOT System</option>
     </select>
     <button type="submit">Redirect Complaint</button>
+<br>
+<h3>Log Update History</h3>
+<table class="table table-bordered"style="border: 1px solid #ddd;">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Status</th>
+            <th>Last Update</th>
+        </tr>
+    </thead>
+    <tbody style="border: 1px solid #ddd;">
+        <?php
+        $no = 1;
+        $query = $this->db->get_where('log_update', ['id' => $complaint['id']]);
+        $logs = $query->result_array();
+        foreach($logs as $log): ?>
+        <tr style="border: 1px solid #ddd;">
+            <td style="border: 1px solid #ddd; padding: 8px;"><?= $no++; ?></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><?= $log['status']; ?></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><?= $log['created_at']; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
 </form>
 </div>
 

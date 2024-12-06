@@ -16,7 +16,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="<?= base_url('dashboard'); ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -61,6 +61,14 @@
             <!-- Heading -->
             <div class="sidebar-heading">
                 Addons
+                <?php if($this->session->userdata('user_level') == 'admin'): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('user'); ?>">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>User Manage</span>
+                    </a>
+                </li>
+                <?php endif; ?>
             </div>
 
             <!-- Nav Item - Charts -->
