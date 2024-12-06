@@ -24,6 +24,9 @@ class Dashboard extends CI_Controller {
         $data['content'] = 'dashboard/index';
 
         $this->load->view('templates/main', $data);
+        $this->load->view('templates/v_footer');
+        $this->load->view('templates/v_header');
+        // $this->load->view('templates/v_footer');
     }
 
 }

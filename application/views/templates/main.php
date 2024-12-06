@@ -1,8 +1,5 @@
 <?php $this->load->view('templates/v_header') ?>
 
-
-
-
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -23,8 +20,14 @@
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
-            <?php $this->load->view('templates/v_footer') ?>
-        </div>
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; CP-Helpdesk 2024</span>
+                    </div>
+                </div>
+            </footer>    
+            </div>
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->

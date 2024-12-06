@@ -23,6 +23,7 @@
                 <option value="Network">Network</option>
                 <option value="Parkee System">Parkee System</option>
                 <option value="IOT System">IOT System</option>
+                <option value="Infra">Infrastructure</option>
             </select>
         </div>
         <div class="form-group">

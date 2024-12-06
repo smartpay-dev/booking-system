@@ -6,7 +6,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-question-circle"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Helpdesk</div>
             </a>
@@ -17,7 +17,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('dashboard'); ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-home"></i>
                     <span>Dashboard</span></a>
             </li>
 
@@ -31,10 +31,17 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('complaint'); ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-comment"></i>
                     <span>Complaint</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('maintenance'); ?>">
+                    <i class="fas fa-fw fa-file-alt"></i>
+                    <span>Request</span>
+                </a>
+            </li>
+
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <!-- <li class="nav-item">
@@ -59,17 +66,48 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
+            <?php if($this->session->userdata('user_level') == 'admin' || 'dev'): ?>
             <div class="sidebar-heading">
                 Addons
-                <?php if($this->session->userdata('user_level') == 'admin'): ?>
+            </div>
+
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('user'); ?>">
                         <i class="fas fa-fw fa-user"></i>
                         <span>User Manage</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('maintenance'); ?>">
+                        <i class="fas fa-fw fa-history"></i>
+                        <span>Log Update History</span>
+                    </a>
+                </li>
                 <?php endif; ?>
+
+                <!-- RND & DEVS TEAMS -->
+            <?php if($this->session->userdata('user_teams') == 'Super Admin ' || 'Dev'): ?>
+            <div class="sidebar-heading">
+                RND & DEVS
             </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('dashboard'); ?>">
+                        <i class="fas fa-fw fa-home"></i>
+                        <span>Dashboard</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('user'); ?>">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>User Manage</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('maintenance'); ?>">
+                        <i class="fas fa-fw fa-history"></i>
+                        <span>Log Update History</span>
+                    </a>
+                </li>
+                <?php endif; ?>
 
             <!-- Nav Item - Charts -->
             <!-- <li class="nav-item">

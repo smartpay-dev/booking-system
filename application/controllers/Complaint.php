@@ -63,7 +63,8 @@ class Complaint extends CI_Controller {
             'priority' => $priority,
             'issue_title' => $this->input->post('issue_title'),
             'issue_description' => $this->input->post('issue_description'),
-            'deadline_date' => $deadline
+            'deadline_date' => $deadline,
+            'user_update' => $this->session->userdata('username')
         );
 
         if ($this->M_complaint->saveComplaint($data)) {
@@ -81,12 +82,20 @@ class Complaint extends CI_Controller {
     private function sendEmail($to, $category, $data) {
 
         $category_email = array(
-            'Network' => 'raharja.permana@centreparkcorp.com',
-            'Parkee System' => 'eka.saputra@centreparkcorp.com',
-            'IOT System' => 'rofiq.rifiansyah@centreparkcorp.com'
+            'Network' => 'rofiq.rifiansyah@centreparkcorp.com',
+            // 'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
+            'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com'],
+            'Infra' => 'rofiq.rifiansyah@centreparkcorp.com'
         );
 
-        $cc_email = array_merge(['rofik47@gmail.com','rofikajja48@gmail.com']);
+        $category_email_cc = array(
+            'Network' => 'raharja.permana@centreparkcorp.com',
+            // 'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
+            'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com'],
+            'Infra' => 'm.fahmi@centreparkcorp.com'
+        );
+
+        $cc_email = array_merge(['rofiq.rifiansyah@centreparkcorp.com', $this->session->userdata('user_email')]);
         $cc_emails_string = implode(',', $cc_email);
         $cc =  $cc_emails_string;
 
@@ -94,6 +103,7 @@ class Complaint extends CI_Controller {
         $this->email->from('cs.ho@centreparkcorp.com', 'Helpdesk Admin');
         $this->email->to($category_email[$category]);
         $this->email->cc($cc);
+        // $this->email->cc($category_email_cc[$category]);
 
         $this->email->subject($data['issue_title']);
         $link = base_url("complaint/detail/" . $data['id']);

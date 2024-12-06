@@ -51,3 +51,19 @@
     <?php endif; ?>
 
    
+<!-- scripts.php atau bagian bawah halaman -->
+<script>
+    $(document).ready(function() {
+        // Inisialisasi DataTable dengan fitur Pagination dan Export buttons
+        var table = $('#dataTable').DataTable({
+            "paging": true,                // Enable pagination
+            "pageLength": 10,              // Set the number of records per page
+            "lengthChange": true,          // Allow the user to change the page length
+            "searching": true,             // Enable search functionality
+            "ordering": true,              // Enable column sorting
+            "info": true,                  // Show info like "Showing 1 to 10 of 100"
+            "autoWidth": false,            // Disable auto width for table columns
+            "responsive": true,            // Make the table responsive for small screens
+        });
+    });
+</script>
