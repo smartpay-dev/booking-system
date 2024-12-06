@@ -5,21 +5,20 @@ class User extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        // Memuat helper dan library yang diperlukan
         $this->load->helper('url');
-        // $this->load->library('session');
-        $this->load->model('M_User');  // Pastikan model M_User ada di folder models
+        $this->load->library('session');
+        $this->load->model('M_user');
     }
 
-    // Fungsi untuk menampilkan dashboard user
     public function index() {
+        if (!$this->session->userdata('logged_in')) {
+            redirect('login');
+        }
         
-        // Mengatur data lainnya jika diperlukan
-        $data['title'] = 'User Dashboard';  // Misalnya menambahkan title untuk halaman
-        $data['active_page'] = 'user_dashboard';  // Misalnya untuk menandai halaman aktif di navbar
+        $data['title'] = 'User Dashboard';
+        $data['active_page'] = 'user_dashboard';
         $data['content'] = 'user/index';
 
-        // Memuat view dengan data yang telah disiapkan
         $this->load->view('templates/main', $data);
     }
     
