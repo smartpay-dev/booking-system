@@ -86,7 +86,7 @@
                 <?php endif; ?>
 
                 <!-- RND & DEVS TEAMS -->
-            <?php if($this->session->userdata('user_teams') == 'Super Admin ' || 'Dev'): ?>
+            <!-- <?php if($this->session->userdata('user_teams') == 'Super Admin ' || 'Dev'): ?>
             <div class="sidebar-heading">
                 RND & DEVS
             </div>
@@ -107,7 +107,7 @@
                         <span>Log Update History</span>
                     </a>
                 </li>
-                <?php endif; ?>
+                <?php endif; ?> -->
 
             <!-- Nav Item - Charts -->
             <!-- <li class="nav-item">
