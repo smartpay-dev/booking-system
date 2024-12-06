@@ -82,8 +82,8 @@
                         <input type="text" class="form-control" name="username" required>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" name="user_email" required>
+                        <label>E-mail</label>
+                        <input type="text" class="form-control" name="user_email" required>
                     </div>
                     <div class="form-group">
                         <label>Password</label>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="form-group">
                         <label>E-mail</label>
-                        <input type="email" class="form-control" name="email" id="edit_email" required>
+                        <input type="text" class="form-control" name="email" id="edit_email" required>
                     </div>
                     <div class="form-group">
                         <label>Password</label>
