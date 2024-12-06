@@ -26,7 +26,8 @@
                         <span>Copyright &copy; CP-Helpdesk 2024</span>
                     </div>
                 </div>
-            </footer>    
+                <?php $this->load->view('templates/v_footer') ?>
+                </footer>    
             </div>
         <!-- End of Content Wrapper -->
     </div>
