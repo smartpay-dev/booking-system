@@ -66,7 +66,7 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <?php if($this->session->userdata('user_level') == 'admin'): ?>
+            <?php if($this->session->userdata('user_level') == 'dev'): ?>
             <div class="sidebar-heading">
                 Addons
             </div>

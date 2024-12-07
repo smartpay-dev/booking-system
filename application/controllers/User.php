@@ -15,9 +15,9 @@ class User extends CI_Controller {
             redirect('login');
         }
 
-        if ($this->session->userdata('user_level') != 'admin') {
-            redirect('dashboard');
-        }
+        // if ($this->session->userdata('user_level') != 'admin') {
+        //     redirect('dashboard');
+        // }
         
         $data['title'] = 'User Management';
         $data['users'] = $this->M_user->getAllUsers();
