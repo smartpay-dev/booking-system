@@ -54,6 +54,10 @@ class Complaint extends CI_Controller {
                 break;
         }
 
+        // Generate id_ticket automatically
+        $last_id = $this->M_complaint->generateIdTicket();
+        $id_ticket = $last_id;
+
         $data = array(
             'reporter_name' => $this->input->post('reporter_name'),
             'reporter_email' => $this->input->post('reporter_email'), 
@@ -64,7 +68,8 @@ class Complaint extends CI_Controller {
             'issue_title' => $this->input->post('issue_title'),
             'issue_description' => $this->input->post('issue_description'),
             'deadline_date' => $deadline,
-            'user_update' => $this->session->userdata('username')
+            'user_update' => $this->session->userdata('username'),
+            'id_ticket' => $id_ticket // Tambahkan id_ticket ke dalam array data
         );
 
         if ($this->M_complaint->saveComplaint($data)) {

@@ -37,5 +37,10 @@ class M_complaint extends CI_Model {
         return $this->db->update('tb_complaint', ['category' => $newCategory]);
     }
 
-
+    public function generateIdTicket() {
+        $query = $this->db->query("SELECT MAX(id)+1 AS last_id FROM tb_complaint");
+        $row = $query->row();
+        $id_ticket = 'HD-' . $row->last_id;
+        return $id_ticket;
+    }
 }
