@@ -21,12 +21,11 @@ class Assigment extends CI_Controller {
         $data['count_all_data_teams'] = $this->M_assigment->getAllTickets_teams();
         $data['count_data_progress_teams'] = $this->M_assigment->getTicketsInProgress_teams();
         $data['count_data_closed_teams'] = $this->M_assigment->getClosedTickets_teams();
+        $data['count_data_cancelled_teams'] = $this->M_assigment->getCancelledTickets_teams();
         $data['content'] = 'assigment/index';
 
         $this->load->view('templates/main', $data);
         $this->load->view('templates/v_footer');
         $this->load->view('templates/v_header');
-        // $this->load->view('templates/v_footer');
     }
-
 }

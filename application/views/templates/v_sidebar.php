@@ -20,20 +20,20 @@
             </div> -->
 
             <!-- Nav Item - Dashboard -->
+            <?php if($this->session->userdata('user_teams') == 'Helpdesk'): ?>
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('dashboard'); ?>">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Dashboard</span></a>
             </li>
-
+            <?php else: ?>
             <!-- Assigment Dashboard -->
-            <!-- <?php if($this->session->userdata('user_level') == 'dev' || $this->session->userdata('user_teams') == 'AI' || $this->session->userdata('user_teams') == 'Robotik'): ?> -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('assigment'); ?>">
                     <i class="fas fa-fw fa-home"></i>
                     <span>My Assigment</span></a>
             </li>
-            <!-- <?php endif; ?> -->
+            <?php endif; ?>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -77,7 +77,7 @@
             <div class="sidebar-heading">
                 Addons
             </div>
-            <?php if($this->session->userdata('user_level') == 'dev'): ?>
+            <?php if($this->session->userdata('user_level') == 'Dev'): ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('maintenance'); ?>">
                         <i class="fas fa-fw fa-file-alt"></i>

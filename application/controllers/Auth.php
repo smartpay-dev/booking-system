@@ -6,6 +6,7 @@ class Auth extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('M_user');
+        $this->load->library('session');
     }
 
     public function index() {
@@ -18,14 +19,15 @@ class Auth extends CI_Controller {
     public function login() {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-
+    
         $user = $this->M_user->getUserByUsername($username);
-
+    
         if ($user && password_verify($password, $user['password'])) {
             $user_data = [
                 'id' => $user['id'],
                 'username' => $user['username'],
                 'user_level' => $user['user_level'],
+                'user_teams' => $user['user_teams'],
                 'logged_in' => TRUE
             ];
             $this->session->set_userdata($user_data);
@@ -34,6 +36,16 @@ class Auth extends CI_Controller {
             $this->session->set_flashdata('error', 'Invalid username or password');
             redirect('auth');
         }
+
+        $user_teams = $this->session->userdata('user_teams');
+
+        if (empty($user_teams)) {
+            // Jika user_teams tidak ada di session
+            echo "user_teams tidak ditemukan di session!";
+        } else {
+            echo "user_teams: " . $user_teams;
+        }
+
     }
 
     public function logout() {

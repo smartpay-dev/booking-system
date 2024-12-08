@@ -113,6 +113,7 @@ class Complaint extends CI_Controller {
         $this->email->subject($data['issue_title']);
         $link = base_url("complaint/detail/" . $data['id']);
         $message = "<h3>Complaint Report Data</h3>";
+        $message .= "<p><strong>Ticket Number :</strong> {$data['id_ticket']}</p>";
         $message .= "<p><strong>Reporter Name:</strong> {$data['reporter_name']}</p>";
         $message .= "<p><strong>Reporter Email:</strong> {$data['reporter_email']}</p>";
         $message .= "<p><strong>Reporter Phone:</strong> {$data['reporter_phone']}</p>";

@@ -166,9 +166,10 @@
                         <select class="form-control" name="user_teams" id="edit_teams" required>
                             <option value="Helpdesk">Helpdesk</option>
                             <option value="Network">Network</option>
-                            <option value="RnD_Development">RnD/Development</option>
-                            <option value="IT_Support">IT Support</option>
-                            <option value="Infra">Infra</option>
+                            <option value="Parkee System">Parkee System</option>
+                            <option value="IOT System">IOT System</option>
+                            <option value="Infra">Infrastructure</option>
+                            <option value="IT Support">IT Support</option>
                         </select>
                     </div>
                 </div>
