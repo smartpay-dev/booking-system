@@ -62,7 +62,7 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>ID Ticket</th>
                                     <th>Date</th>
                                     <th>Title</th>
                                     <th>Name</th>
@@ -98,7 +98,8 @@
                                         100% { background-color: #ffcdd2; }
                                     }
                                 </style>
-                                    <td><?= $no++; ?></td>
+                                    <!-- <td><?= $no++; ?></td> -->
+                                    <td><?= $row->id_ticket; ?></td>
                                     <td><?= $row->issue_date; ?></td>
                                     <td><?= $row->issue_title; ?></td>
                                     <td><?= $row->reporter_name; ?></td>
