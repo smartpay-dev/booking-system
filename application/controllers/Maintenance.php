@@ -15,11 +15,13 @@ class Maintenance extends CI_Controller {
             redirect('login');
         }
         
-        $data['title'] = 'Maintenance Dashboard';
-        $data['active_page'] = 'maintenance_dashboard';
+        $data['title'] = 'Maintenance';
+        $data['active_page'] = 'maintenance';
         $data['content'] = 'maintenance/index';
 
         $this->load->view('templates/main', $data);
+        $this->load->view('templates/v_footer');
+        $this->load->view('templates/v_header');
     }
     
 

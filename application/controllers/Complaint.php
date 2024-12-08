@@ -37,7 +37,6 @@ class Complaint extends CI_Controller {
     
     // input database
     public function submit_complaint() {
-        // Hitung deadline berdasarkan priority
         $priority = $this->input->post('priority');
         date_default_timezone_set('Asia/Jakarta');
         $deadline = date('Y-m-d');
@@ -54,7 +53,6 @@ class Complaint extends CI_Controller {
                 break;
         }
 
-        // Generate id_ticket automatically
         $last_id = $this->M_complaint->generateIdTicket();
         $id_ticket = $last_id;
 
@@ -69,7 +67,7 @@ class Complaint extends CI_Controller {
             'issue_description' => $this->input->post('issue_description'),
             'deadline_date' => $deadline,
             'user_update' => $this->session->userdata('username'),
-            'id_ticket' => $id_ticket // Tambahkan id_ticket ke dalam array data
+            'id_ticket' => $id_ticket
         );
 
         if ($this->M_complaint->saveComplaint($data)) {
@@ -87,17 +85,19 @@ class Complaint extends CI_Controller {
     private function sendEmail($to, $category, $data) {
 
         $category_email = array(
-            'Network' => 'rofiq.rifiansyah@centreparkcorp.com',
+            'Network' => 'raharja.permana@centreparkcorp.com',
             // 'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
-            'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com'],
-            'Infra' => 'rofiq.rifiansyah@centreparkcorp.com'
+            'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com','topik.gunawan@centreparkcorp.com'],
+            'Infra' => 'm.fahmi@centreparkcorp.com',
+            'IT Support' => 'harry.djohardin@centreparkcorp.com',
         );
 
         $category_email_cc = array(
             'Network' => 'raharja.permana@centreparkcorp.com',
             // 'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
             'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com'],
-            'Infra' => 'm.fahmi@centreparkcorp.com'
+            'Infra' => 'm.fahmi@centreparkcorp.com',
+            'IT Support' => 'm.fahmi@centreparkcorp.com',
         );
 
         $cc_email = array_merge(['rofiq.rifiansyah@centreparkcorp.com', $this->session->userdata('user_email')]);
@@ -130,6 +130,9 @@ class Complaint extends CI_Controller {
 
     // view detail complaint
     public function detail($id) {
+        // if (!$this->session->userdata('logged_in')) {
+        //     redirect('login');
+        // }
         $complaint = $this->M_complaint->getComplaintById($id);
         if (!$complaint) {
             show_404();
