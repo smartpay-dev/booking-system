@@ -171,18 +171,19 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <!-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
+                                </a> -->
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#activityLogModal">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    Log Update Version
                                 </a>
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -195,3 +196,48 @@
 
                 </nav>
                 <!-- End of Topbar -->
+
+<!-- Modal Update Version -->
+<div class="modal fade" id="activityLogModal" tabindex="-1" role="dialog" aria-labelledby="activityLogModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="activityLogModalLabel">Update Version Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Version 1.2.0 - Released on December 8, 2024</strong></p>
+                <p>This update includes several important improvements and bug fixes to enhance the performance and stability of the application:</p>
+                <ul>
+                    <li><strong>New Features:</strong></li>
+                    <ul>
+                        <li>Added a new user dashboard for better management.</li>
+                        <li>Added a new menu <strong><a href="<?= base_url('request'); ?>">Request</a></strong>.</li>
+                    </ul>
+                    <li><strong>Bug Fixes:</strong></li>
+                    <ul>
+                        <li>Resolved issues related to ticket status updates.</li>\
+                    </ul>
+                    <!-- <li><strong>Performance Enhancements:</strong></li>
+                    <ul>
+                        <li>Optimized database queries for faster response times.</li>
+                        <li>Improved system scalability to handle more simultaneous requests.</li>
+                    </ul> -->
+                </ul>
+                <p>If you encounter any issues or need assistance, please contact our support team.</p>
+                <div style="background-color: #f4f4f9; padding: 10px 20px; border-radius: 8px; border: 1px solid #ddd;">
+                    <p style="font-size: 16px; font-weight: bold; color: #333;">Email Support:</p>
+                    <a href="mailto:rofiq.rifiansyah@centreparkcorp.com" style="font-size: 16px; color: #007bff; text-decoration: none;">
+                        rofiq.rifiansyah@centreparkcorp.com
+                    </a>
+                    <p style="font-size: 14px; color: #777;">Our support team is available to assist you with any questions or issues you may have. Don't hesitate to reach out!</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
-<div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
-    
+<!-- outstanding dashboard -->
+
+
     <!-- Menampilkan data statistik keluhan -->
     <div class="row" style="width: 70%;">
         <div class="col-xl-3 col-md-6 mb-4">
@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Tickets</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Request</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($count_all_data); ?></div>
                         </div>
                         <div class="col-auto">
@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">On Progress Tickets</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">On Progress Request</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($count_data_progress); ?></div>
                         </div>
                         <div class="col-auto">
@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Closed Tickets</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Closed Request</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($count_data_closed); ?></div>
                         </div>
                         <div class="col-auto">
@@ -53,7 +53,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Cancelled Tickets</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Cancelled Request</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($count_data_cancelled); ?></div>
                         </div>
                         <div class="col-auto">
@@ -70,11 +70,11 @@
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Complaints Ticket</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Requests Ticket</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="dataTableRequest" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -134,4 +134,19 @@
         </div>
     </div>
 
-</div>
+    
+<script>
+    $(document).ready(function() {
+        // Inisialisasi DataTable dengan fitur Pagination dan Export buttons
+        var table = $('#dataTableRequest').DataTable({
+            "paging": true,                // Enable pagination
+            "pageLength": 10,              // Set the number of records per page
+            "lengthChange": true,          // Allow the user to change the page length
+            "searching": true,             // Enable search functionality
+            "ordering": false,             // Enable column sorting
+            "info": true,                  // Show info like "Showing 1 to 10 of 100"
+            "autoWidth": false,            // Disable auto width for table columns
+            "responsive": true,            // Make the table responsive for small screens
+        });
+    });
+</script>

@@ -10,8 +10,7 @@ class Request extends CI_Controller {
         $this->load->library('session');
         $this->load->model('M_request');
 
-        $config = array(
-            
+        $config = array(            
             'protocol' => 'smtp',
             'smtp_host' => 'smtp.mail.yahoo.com',
             'smtp_port' => 587,
@@ -23,13 +22,27 @@ class Request extends CI_Controller {
             'smtp_crypto' => 'tls'
         );
 
+        // $config = array(
+            
+        //     'protocol' => 'smtp',
+        //     'smtp_host' => 'smtp-relay.sendinblue.com',
+        //     'smtp_port' => 587,
+        //     'smtp_user' => '5410b1003@smtp-brevo.com',
+        //     'smtp_pass' => '5FgBKbVDsk0Z4zxH',
+        //     'mailtype' => 'html',
+        //     'charset' => 'utf-8',
+        //     'newline' => "\r\n",
+        //     'smtp_crypto' => 'tls',
+        //     'validation' => TRUE
+        // );
+
         $this->email->initialize($config);
     }
 
     public function index() {
         $data = [
             'title' => 'Request Form',
-            'active_page' => 'request',
+            // 'active_page' => 'request',
             'content' => 'request/index'
         ];
 
@@ -54,108 +67,131 @@ class Request extends CI_Controller {
                 $deadline = date('Y-m-d', strtotime('+6 days'));
                 break;
         }
-
-        $last_id = $this->M_Request->generateIdTicket();
+    
+        $last_id = $this->M_request->generateIdTicket();
         $id_ticket = $last_id;
+    
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'jpg|jpeg|png|pdf|doc|docx|xls|xlsx|txt';
+        $config['max_size'] = 2048;
+        $config['encrypt_name'] = TRUE;
 
+        $this->load->library('upload', $config);
+    
+        $file_name = '';
+        if ($this->upload->do_upload('file')) {
+            $file_data = $this->upload->data();
+            $file_name = $file_data['file_name'];
+        } else {
+            $file_name = NULL;
+        }
+    
         $data = array(
             'reporter_name' => $this->input->post('reporter_name'),
-            'reporter_email' => $this->input->post('reporter_email'), 
+            'reporter_email' => $this->input->post('reporter_email'),
             'reporter_phone' => $this->input->post('reporter_phone'),
-            'issue_date' => $this->input->post('issue_date'),
+            'request_date' => $this->input->post('request_date'),
             'category' => $this->input->post('category'),
             'priority' => $priority,
-            'issue_title' => $this->input->post('issue_title'),
-            'issue_description' => $this->input->post('issue_description'),
+            'request_title' => $this->input->post('request_title'),
+            'request_description' => $this->input->post('request_description'),
             'deadline_date' => $deadline,
             'user_update' => $this->session->userdata('username'),
-            'id_ticket' => $id_ticket
+            'id_ticket' => $id_ticket,
+            'file_name' => $file_name
         );
-
-        if ($this->M_Request->saveComplaint($data)) {
-            $data['id'] = $this->M_Request->getLastInsertedId();
-            $this->sendEmail($data['reporter_email'], $data['category'], $data);
-            $this->session->set_flashdata('success', 'The complaint was successfully sent');
+    
+        if ($this->M_request->saveRequest($data)) {
+            $data['id'] = $this->M_request->getLastInsertedId();
+            
+            if ($file_name) {
+                $this->M_request->saveFileName($data['id'], $file_name);
+            }
+    
+            $this->sendEmail($data['reporter_email'], $data['category'], $data, $file_name);
+    
+            $this->session->set_flashdata('success', 'The request was successfully sent');
         } else {
-            $this->session->set_flashdata('error', 'Complaint failed to send');
+            $this->session->set_flashdata('error', 'Request failed to send');
         }
-
-        redirect('complaint');
+    
+        redirect('request');
     }
-
-    // send email complaint
-    private function sendEmail($to, $category, $data) {
-
+    
+    private function sendEmail($to, $category, $data, $file_name) {
         $category_email = array(
-            'Network' => 'raharja.permana@centreparkcorp.com',
-            // 'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
-            'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com','topik.gunawan@centreparkcorp.com'],
-            'Infra' => 'm.fahmi@centreparkcorp.com',
-            'IT Support' => 'harry.djohardin@centreparkcorp.com',
+            'Network' => 'rofik47@gmail.com',
+            'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
+            'IOT System' => ['rofik47@gmail.com'],
+            'Infra' => 'rofik47@gmail.com',
+            'IT Support' => 'rofik47@gmail.com',
         );
-
+    
         $category_email_cc = array(
-            'Network' => 'raharja.permana@centreparkcorp.com',
-            // 'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
-            'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com'],
-            'Infra' => 'm.fahmi@centreparkcorp.com',
-            'IT Support' => 'm.fahmi@centreparkcorp.com',
+            'Network' => 'rofik47@gmail.com',
+            'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
+            'IOT System' => ['rofik47@gmail.com'],
+            'Infra' => 'rofik47@gmail.com',
+            'IT Support' => 'rofik47@gmail.com',
         );
-
-        $cc_email = array_merge(['rofiq.rifiansyah@centreparkcorp.com', $this->session->userdata('user_email')]);
+    
+        $cc_email = array_merge(['rofik47@gmail.com', $this->session->userdata('user_email')]);
         $cc_emails_string = implode(',', $cc_email);
         $cc =  $cc_emails_string;
-
-        // $cc = [''];
+    
         $this->email->from('cs.ho@centreparkcorp.com', 'Helpdesk Admin');
         $this->email->to($category_email[$category]);
         $this->email->cc($cc);
-        // $this->email->cc($category_email_cc[$category]);
+    
+        $this->email->subject($data['request_title']);
+        $link = base_url("request/detail/" . $data['id']);
 
-        $this->email->subject($data['issue_title']);
-        $link = base_url("complaint/detail/" . $data['id']);
-        $message = "<h3>Complaint Report Data</h3>";
+        $file_url = base_url('uploads/' . $file_name);
+    
+        $message = "<h3>Request Report Data</h3>";
         $message .= "<p><strong>Ticket Number :</strong> {$data['id_ticket']}</p>";
         $message .= "<p><strong>Reporter Name:</strong> {$data['reporter_name']}</p>";
         $message .= "<p><strong>Reporter Email:</strong> {$data['reporter_email']}</p>";
         $message .= "<p><strong>Reporter Phone:</strong> {$data['reporter_phone']}</p>";
-        $message .= "<p><strong>Issue Date:</strong> {$data['issue_date']}</p>";
-        $message .= "<p><strong>Issue Description:</strong><br>{$data['issue_description']}</p>";
-        $message .= "<p><a href='{$link}' style='background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; display: inline-block;'>View and Update Status</a></p>";
-
+        $message .= "<p><strong>Request Date:</strong> {$data['request_date']}</p>";
+        $message .= "<p><strong>Request Description:</strong><br>{$data['request_description']}</p>";
+        
+        $message .= "<p><strong>File :</strong> <a href='{$file_url}' style='background-color: #4CAF50; color: white; padding: 3px 10px; text-decoration: none; display: inline-block;'>View</a></p>";
+        
+        // $message .= "<p><a href='{$link}' style='background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; display: inline-block;'>View and Update Status</a></p>";
+    
         $this->email->message($message);
-
-
+    
         if (!$this->email->send()) {
             echo $this->email->print_debugger();
         }
     }
+    
 
     // view detail complaint
     public function detail($id) {
         // if (!$this->session->userdata('logged_in')) {
         //     redirect('login');
         // }
-        $complaint = $this->M_Request->getComplaintById($id);
-        if (!$complaint) {
+        $request = $this->M_Request->getRequestById($id);
+        if (!$request) {
             show_404();
         }
     
         $data = [
-            'title' => 'Complaint Details',
-            'complaint' => $complaint
+            'title' => 'Request Details',
+            'request' => $request
         ];
-        $this->load->view('complaint/detail', $data);
+        $this->load->view('request/detail', $data);
     }
 
-    // update satatus
+    // update status
     public function update_status($id) {
         $status = $this->input->post('status');
         date_default_timezone_set('Asia/Jakarta');
         if ($this->M_Request->updateStatus($id, $status)) {
             $complaint = $this->M_Request->getComplaintById($id);
             
-            // Insert ke tabel log_update
             $log_data = array(
                 'id' => $id,
                 'status' => $status,
@@ -210,10 +246,5 @@ class Request extends CI_Controller {
         }
         
         redirect('complaint/detail/' . $id);
-    }
-
-
-
-
-    
+    }    
 }

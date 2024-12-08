@@ -31,7 +31,7 @@ class Auth extends CI_Controller {
                 'logged_in' => TRUE
             ];
             $this->session->set_userdata($user_data);
-            redirect('complaint');
+            redirect('dashboard');
         } else {
             $this->session->set_flashdata('error', 'Invalid username or password');
             redirect('auth');

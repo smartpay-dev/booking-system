@@ -55,7 +55,12 @@
                     <span>Complaint</span>
                 </a>
             </li>
-
+            <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('request'); ?>">
+                        <i class="fas fa-fw fa-file-alt"></i>
+                        <span>Request</span>
+                    </a>
+            </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <!-- <li class="nav-item">
@@ -84,12 +89,6 @@
                 Addons
             </div>
             <?php if($this->session->userdata('user_level') == 'Dev'): ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('maintenance'); ?>">
-                        <i class="fas fa-fw fa-file-alt"></i>
-                        <span>Request</span>
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('user'); ?>">
                         <i class="fas fa-fw fa-user"></i>

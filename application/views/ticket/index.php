@@ -1,6 +1,6 @@
 <div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">Request Form</h1>
-    <form action="<?= base_url('request/submit_request'); ?>" method="post" enctype="multipart/form-data">
+    <h1 class="h3 mb-4 text-gray-800">Complaint Form</h1>
+    <form action="<?= base_url('complaint/submit_complaint'); ?>" method="post">
         <div class="form-group">
             <label for="name">Reporter Name</label>
             <input type="text" class="form-control" id="name" name="reporter_name" required>
@@ -14,8 +14,8 @@
             <input type="text" class="form-control" id="phone" name="reporter_phone" required>
         </div>
         <div class="form-group">
-            <label for="request_date">Request Date</label>
-            <input type="date" class="form-control" id="request_date" name="request_date" required>
+            <label for="issue_date">Issue Date</label>
+            <input type="date" class="form-control" id="issue_date" name="issue_date" required>
         </div>
         <div class="form-group">
             <label for="category">Division</label>
@@ -36,20 +36,14 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="request_title">Request Title</label>
-            <input class="form-control" id="request_title" name="request_title" required></input>
+            <label for="issue_title">Issue Title</label>
+            <input class="form-control" id="issue_title" name="issue_title" required></input>
         </div>
         <div class="form-group">
-            <label for="request_description">Request Description</label>
-            <textarea class="form-control" id="request_description" name="request_description" rows="4" required></textarea>
+            <label for="issue_description">Issue Description</label>
+            <textarea class="form-control" id="issue_description" name="issue_description" rows="4" required></textarea>
         </div>
-
-        <!-- Tambahkan Form Upload File -->
-        <div class="form-group">
-            <label for="file">Upload File</label>
-            <input type="file" class="form-control" id="file" name="file" accept="application/pdf,image/*,.doc,.docx,.xls,.xlsx,.txt">
-        </div>
-
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+
