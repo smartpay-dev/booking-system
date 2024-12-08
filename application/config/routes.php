@@ -59,12 +59,16 @@ $route['default_controller'] = 'auth';
 $route['complaint'] = 'complaint/index';
 $route['dashboard'] = 'dashboard/index';
 $route['user'] = 'user/index';
+$route['assigment'] = 'assigment/index';
 $route['complaint/detail/(:num)'] = 'complaint/detail/$1';
 $route['complaint/redirectComplaint/(:num)'] = 'complaint/redirectComplaint/$1';
 
 //auth
 $route['login'] = 'auth/index';
 $route['logout'] = 'auth/logout';
+
+// user
+$route['user/delete/(:num)'] = 'user/delete/$1';
 
 
 
