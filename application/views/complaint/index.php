@@ -24,6 +24,7 @@
                 <option value="Parkee System">Parkee System</option>
                 <option value="IOT System">IOT System</option>
                 <option value="Infra">Infrastructure</option>
+                <option value="IT Support">IT Support</option>
             </select>
         </div>
         <div class="form-group">
