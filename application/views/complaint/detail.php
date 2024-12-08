@@ -59,7 +59,7 @@
             <option value="in_progress">Please Select</option>
             <option value="in_progress">In Progress</option>
             <option value="resolved">Resolved</option>
-            <option value="resolved">Cancelled</option>
+            <option value="cancelled">Cancelled</option>
         </select>
         <button type="submit" <?= $complaint['status'] == 'resolved' || $complaint['status'] == 'cancelled' ? 'disabled' : ''; ?>>Update</button>
     </form>

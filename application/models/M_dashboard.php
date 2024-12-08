@@ -46,4 +46,9 @@ class M_dashboard extends CI_Model {
         return $this->db->query($query)->result_array();
     }
 
+    public function getCancelledTickets() {
+        $query = "SELECT * FROM tb_complaint WHERE status = 'cancelled'";
+        return $this->db->query($query)->result_array();
+    }
+
 }

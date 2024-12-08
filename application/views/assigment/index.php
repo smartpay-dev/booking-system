@@ -28,7 +28,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($count_data_progress_teams); ?></div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-ticket-alt fa-2x text-gray-300"></i>
+                        <i class="fas fa-spinner fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($count_data_closed_teams); ?></div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-ticket-alt fa-2x text-gray-300"></i>
+                        <i class="fas fa-check-circle fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($count_data_cancelled_teams); ?></div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-ticket-alt fa-2x text-gray-300"></i>
+                            <i class="fas fa-ban fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
