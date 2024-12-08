@@ -61,17 +61,17 @@
             <option value="resolved">Resolved</option>
             <option value="resolved">Cancelled</option>
         </select>
-        <button type="submit">Update</button>
+        <button type="submit" <?= $complaint['status'] == 'resolved' || $complaint['status'] == 'cancelled' ? 'disabled' : ''; ?>>Update</button>
     </form>
     <br>
-    <form action="<?= base_url('complaint/redirectComplaint/' . $complaint['id']); ?>" method="post">
+    <!-- <form action="<?= base_url('complaint/redirectComplaint/' . $complaint['id']); ?>" method="post">
     <label for="new_category">Redirect to Team/Category:</label>
     <select name="new_category" id="new_category">
         <option value="Network">Network</option>
         <option value="Parkee System">Parkee System</option>
         <option value="IOT System">IOT System</option>
     </select>
-    <button type="submit">Redirect Complaint</button>
+    <button type="submit">Redirect Complaint</button> -->
 <br>
 <h3>Log Update History</h3>
 <table class="table table-bordered"style="border: 1px solid #ddd;">
