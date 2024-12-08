@@ -18,7 +18,7 @@
             <input type="date" class="form-control" id="issue_date" name="issue_date" required>
         </div>
         <div class="form-group">
-            <label for="category">Category</label>
+            <label for="category">Division</label>
             <select class="form-control" name="category" id="category" required>
                 <option value="Network">Network</option>
                 <option value="Parkee System">Parkee System</option>
