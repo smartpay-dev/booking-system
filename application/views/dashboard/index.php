@@ -62,7 +62,7 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>ID Ticket</th>
+                                    <th>ID</th>
                                     <th>Date</th>
                                     <th>Title</th>
                                     <th>Name</th>
