@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Ticket</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Tickets</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($count_all_data); ?></div>
                         </div>
                         <div class="col-auto">
@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">On Progress Ticket</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">On Progress Tickets</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($count_data_progress); ?></div>
                         </div>
                         <div class="col-auto">
@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Ticket Closed</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Closed Tickets</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($count_data_closed); ?></div>
                         </div>
                         <div class="col-auto">
