@@ -23,7 +23,7 @@ class M_assigment extends CI_Model {
         $this->db->from('tb_user');
         $this->db->where('username', $username);
         $query = $this->db->get();
-        return $query->row(); // Ganti ke row() karena hanya ada satu user berdasarkan username
+        return $query->row();
     }
 
     public function get_ticket_closed_statistics_teams() {
@@ -38,15 +38,11 @@ class M_assigment extends CI_Model {
 
     public function getAllTickets_teams() {
         $user_teams = $this->session->userdata('user_teams');
-    
-        // Raw SQL query to fetch all tickets based on category
         $sql = "
             SELECT *
             FROM `tb_complaint`
             WHERE `category` = ?
         ";
-    
-        // Execute the query with the user_teams value as a parameter to prevent SQL injection
         $query = $this->db->query($sql, array($user_teams));
     
         return $query->result();
@@ -55,16 +51,12 @@ class M_assigment extends CI_Model {
 
     public function getTicketsInProgress_teams() {
         $user_teams = $this->session->userdata('user_teams');
-    
-        // Raw SQL query to fetch tickets where status is not resolved and status is NULL
         $sql = "
             SELECT *
             FROM `tb_complaint`
             WHERE (`status` NOT IN ('resolved', 'cancelled') OR `status` IS NULL)
             AND `category` = ?
         ";
-    
-        // Execute the query with the user_teams value as a parameter to prevent SQL injection
         $query = $this->db->query($sql, array($user_teams));
     
         return $query->result();
@@ -73,16 +65,12 @@ class M_assigment extends CI_Model {
 
     public function getClosedTickets_teams() {
         $user_teams = $this->session->userdata('user_teams');
-    
-        // Raw SQL query to fetch closed tickets based on category
         $sql = "
             SELECT *
             FROM `tb_complaint`
             WHERE `status` = 'resolved'
             AND `category` = ?
         ";
-    
-        // Execute the query with the user_teams value as a parameter to prevent SQL injection
         $query = $this->db->query($sql, array($user_teams));
     
         return $query->result();
@@ -91,16 +79,12 @@ class M_assigment extends CI_Model {
 
     public function getCancelledTickets_teams() {
         $user_teams = $this->session->userdata('user_teams');
-    
-        // Raw SQL query to fetch cancelled tickets based on category
         $sql = "
             SELECT *
             FROM `tb_complaint`
             WHERE `status` = 'cancelled'
             AND `category` = ?
         ";
-    
-        // Execute the query with the user_teams value as a parameter to prevent SQL injection
         $query = $this->db->query($sql, array($user_teams));
     
         return $query->result();

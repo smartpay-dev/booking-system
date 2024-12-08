@@ -40,7 +40,6 @@ class Auth extends CI_Controller {
         $user_teams = $this->session->userdata('user_teams');
 
         if (empty($user_teams)) {
-            // Jika user_teams tidak ada di session
             echo "user_teams tidak ditemukan di session!";
         } else {
             echo "user_teams: " . $user_teams;
