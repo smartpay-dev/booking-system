@@ -120,11 +120,11 @@ class Request extends CI_Controller {
     
     private function sendEmail($to, $category, $data, $file_name) {
         $category_email = array(
-            'Network' => 'rofik47@gmail.com',
-            'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
-            'IOT System' => ['rofik47@gmail.com'],
-            'Infra' => 'rofik47@gmail.com',
-            'IT Support' => 'rofik47@gmail.com',
+            'Network' => 'raharja.permana@centreparkcorp.com',
+            // 'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
+            'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com','topik.gunawan@centreparkcorp.com'],
+            'Infra' => 'm.fahmi@centreparkcorp.com',
+            'IT Support' => 'harry.djohardin@centreparkcorp.com',
         );
     
         $category_email_cc = array(
@@ -135,7 +135,7 @@ class Request extends CI_Controller {
             'IT Support' => 'rofik47@gmail.com',
         );
     
-        $cc_email = array_merge(['rofik47@gmail.com', $this->session->userdata('user_email')]);
+        $cc_email = array_merge(['rofiq.rifiansyah@centreparkcorp.com', $this->session->userdata('user_email')]);
         $cc_emails_string = implode(',', $cc_email);
         $cc =  $cc_emails_string;
     
