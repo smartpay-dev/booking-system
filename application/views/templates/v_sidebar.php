@@ -14,12 +14,26 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
+            <!-- Heading -->
+            <!-- <div class="sidebar-heading">
+                Dashboard
+            </div> -->
+
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('dashboard'); ?>">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Dashboard</span></a>
             </li>
+
+            <!-- Assigment Dashboard -->
+            <!-- <?php if($this->session->userdata('user_level') == 'dev' || $this->session->userdata('user_teams') == 'AI' || $this->session->userdata('user_teams') == 'Robotik'): ?> -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('assigment'); ?>">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>My Assigment</span></a>
+            </li>
+            <!-- <?php endif; ?> -->
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -33,12 +47,6 @@
                 <a class="nav-link" href="<?= base_url('complaint'); ?>">
                     <i class="fas fa-fw fa-comment"></i>
                     <span>Complaint</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('maintenance'); ?>">
-                    <i class="fas fa-fw fa-file-alt"></i>
-                    <span>Request</span>
                 </a>
             </li>
 
@@ -66,10 +74,16 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <?php if($this->session->userdata('user_level') == 'dev'): ?>
             <div class="sidebar-heading">
                 Addons
             </div>
+            <?php if($this->session->userdata('user_level') == 'dev'): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('maintenance'); ?>">
+                        <i class="fas fa-fw fa-file-alt"></i>
+                        <span>Request</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('user'); ?>">
                         <i class="fas fa-fw fa-user"></i>
