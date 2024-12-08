@@ -20,11 +20,17 @@
             </div> -->
 
             <!-- Nav Item - Dashboard -->
-            <?php if($this->session->userdata('user_teams') == 'Helpdesk'): ?>
+            <?php if($this->session->userdata('user_teams') == 'Helpdesk' || $this->session->userdata('user_teams') == 'Dev'): ?>
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('dashboard'); ?>">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Dashboard</span></a>
+            </li>
+            <!-- Assigment Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('assigment'); ?>">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>My Assigment</span></a>
             </li>
             <?php else: ?>
             <!-- Assigment Dashboard -->
