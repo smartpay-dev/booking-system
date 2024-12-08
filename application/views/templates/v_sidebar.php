@@ -55,12 +55,12 @@
                     <span>Complaint</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('request'); ?>">
                         <i class="fas fa-fw fa-file-alt"></i>
                         <span>Request</span>
                     </a>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <!-- <li class="nav-item">

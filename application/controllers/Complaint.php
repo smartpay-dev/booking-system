@@ -97,7 +97,7 @@ class Complaint extends CI_Controller {
             // 'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
             'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com'],
             'Infra' => 'm.fahmi@centreparkcorp.com',
-            'IT Support' => 'm.fahmi@centreparkcorp.com',
+            'IT Support' => 'harry.djohardin@centreparkcorp.com',
         );
 
         $cc_email = array_merge(['rofiq.rifiansyah@centreparkcorp.com', $this->session->userdata('user_email')]);
