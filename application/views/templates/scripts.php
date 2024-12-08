@@ -60,7 +60,7 @@
             "pageLength": 10,              // Set the number of records per page
             "lengthChange": true,          // Allow the user to change the page length
             "searching": true,             // Enable search functionality
-            "ordering": false,              // Enable column sorting
+            "ordering": false,             // Enable column sorting
             "info": true,                  // Show info like "Showing 1 to 10 of 100"
             "autoWidth": false,            // Disable auto width for table columns
             "responsive": true,            // Make the table responsive for small screens

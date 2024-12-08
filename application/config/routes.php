@@ -57,6 +57,7 @@ $route['default_controller'] = 'auth';
 
 // complaint
 $route['complaint'] = 'complaint/index';
+$route['request'] = 'request/index';
 $route['dashboard'] = 'dashboard/index';
 $route['user'] = 'user/index';
 $route['assigment'] = 'assigment/index';
