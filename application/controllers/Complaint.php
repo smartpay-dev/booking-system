@@ -114,11 +114,13 @@ class Complaint extends CI_Controller {
         $link = base_url("complaint/detail/" . $data['id']);
         $message = "<h3>Complaint Report Data</h3>";
         $message .= "<p><strong>Ticket Number :</strong> {$data['id_ticket']}</p>";
-        $message .= "<p><strong>Reporter Name:</strong> {$data['reporter_name']}</p>";
-        $message .= "<p><strong>Reporter Email:</strong> {$data['reporter_email']}</p>";
-        $message .= "<p><strong>Reporter Phone:</strong> {$data['reporter_phone']}</p>";
-        $message .= "<p><strong>Issue Date:</strong> {$data['issue_date']}</p>";
-        $message .= "<p><strong>Issue Description:</strong><br>{$data['issue_description']}</p>";
+        $message .= "<p><strong>Reporter Name :</strong> {$data['reporter_name']}</p>";
+        $message .= "<p><strong>Reporter Email :</strong> {$data['reporter_email']}</p>";
+        $message .= "<p><strong>Reporter Phone :</strong> {$data['reporter_phone']}</p>";
+        $message .= "<p><strong>Issue Date :</strong> {$data['issue_date']}</p>";
+        $message .= "<p><strong>Issue Description :</strong><br>{$data['issue_description']}</p>";
+        $message .= "<p><strong>Deadline Date :</strong><br>{$data['deadline_date']}</p>";
+        $message .= "<p><strong>Priority :</strong><br>{$data['priority']}</p>";
         $message .= "<p><a href='{$link}' style='background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; display: inline-block;'>View and Update Status</a></p>";
 
         $this->email->message($message);
