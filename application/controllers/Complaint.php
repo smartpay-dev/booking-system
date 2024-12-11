@@ -62,6 +62,7 @@ class Complaint extends CI_Controller {
             'reporter_phone' => $this->input->post('reporter_phone'),
             'issue_date' => $this->input->post('issue_date'),
             'category' => $this->input->post('category'),
+            'location' => $this->input->post('location'),
             'priority' => $priority,
             'issue_title' => $this->input->post('issue_title'),
             'issue_description' => $this->input->post('issue_description'),
@@ -97,7 +98,8 @@ class Complaint extends CI_Controller {
             // 'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
             'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com'],
             'Infra' => 'm.fahmi@centreparkcorp.com',
-            'IT Support' => 'harry.djohardin@centreparkcorp.com',
+            'IT Support' => ['harry.djohardin@centreparkcorp.com', 'moh.hamam@centreparkcorp.com'],
+            // 'IT Support' => 'harry.djohardin@centreparkcorp.com',
         );
 
         $cc_email = array_merge(['rofiq.rifiansyah@centreparkcorp.com', $this->session->userdata('user_email')]);
@@ -117,6 +119,7 @@ class Complaint extends CI_Controller {
         $message .= "<p><strong>Reporter Name :</strong> {$data['reporter_name']}</p>";
         $message .= "<p><strong>Reporter Email :</strong> {$data['reporter_email']}</p>";
         $message .= "<p><strong>Reporter Phone :</strong> {$data['reporter_phone']}</p>";
+        $message .= "<p><strong>Location Name :</strong> {$data['location']}</p>";
         $message .= "<p><strong>Issue Date :</strong> {$data['issue_date']}</p>";
         $message .= "<p><strong>Issue Description :</strong><br>{$data['issue_description']}</p>";
         $message .= "<p><strong>Deadline Date :</strong><br>{$data['deadline_date']}</p>";

@@ -124,7 +124,8 @@ class Request extends CI_Controller {
             // 'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
             'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com','topik.gunawan@centreparkcorp.com'],
             'Infra' => 'm.fahmi@centreparkcorp.com',
-            'IT Support' => 'harry.djohardin@centreparkcorp.com',
+            'IT Support' => ['harry.djohardin@centreparkcorp.com', 'moh.hamam@centreparkcorp.com'],
+            // 'IT Support' => 'harry.djohardin@centreparkcorp.com',
         );
     
         $category_email_cc = array(

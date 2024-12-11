@@ -14,6 +14,10 @@
             <input type="text" class="form-control" id="phone" name="reporter_phone" required>
         </div>
         <div class="form-group">
+            <label for="location">Location Name</label>
+            <input type="text" class="form-control" id="location" name="location" required>
+        </div>
+        <div class="form-group">
             <label for="issue_date">Issue Date</label>
             <input type="date" class="form-control" id="issue_date" name="issue_date" required>
         </div>

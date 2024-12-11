@@ -48,6 +48,7 @@
     <p><strong>Reporter Name:</strong> <?= $complaint['reporter_name']; ?></p>
     <p><strong>Email:</strong> <?= $complaint['reporter_email']; ?></p>
     <p><strong>Phone:</strong> <?= $complaint['reporter_phone']; ?></p>
+    <p><strong>Location Name:</strong> <?= $complaint['location']; ?></p>
     <p><strong>Report Date:</strong> <?= $complaint['issue_date']; ?></p>
     <p><strong>Issue Title:</strong> <?= $complaint['issue_title']; ?></p>
     <p><strong>Issue Description:</strong><br><?= $complaint['issue_description']; ?></p>

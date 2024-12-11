@@ -84,9 +84,10 @@
                                     <th>E-Mail</th>
                                     <th>Phone</th>
                                     <th>Category</th>
+                                    <th>Location Name</th>
                                     <th>Deadline</th>
                                     <th>Description</th>
-                                    <th>Created at</th>
+                                    <!-- <th>Created at</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -121,9 +122,10 @@
                                     <td><?= $row->reporter_email; ?></td>
                                     <td><?= $row->reporter_phone; ?></td>
                                     <td><?= $row->category; ?></td>
+                                    <td><?= $row->location; ?></td>
                                     <td><?= $row->deadline_date; ?></td>
                                     <td><?= $row->issue_description; ?></td>
-                                    <td><?= $row->created_at; ?></td>
+                                    <!-- <td><?= $row->created_at; ?></td> -->
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
