@@ -14,6 +14,10 @@
             <input type="text" class="form-control" id="phone" name="reporter_phone" required>
         </div>
         <div class="form-group">
+            <label for="location">Location Name</label>
+            <input type="text" class="form-control" id="location" name="location" required>
+        </div>
+        <div class="form-group">
             <label for="request_date">Request Date</label>
             <input type="date" class="form-control" id="request_date" name="request_date" required>
         </div>
@@ -30,9 +34,9 @@
         <div class="form-group">
             <label for="priority">Priority</label>
             <select class="form-control" name="priority" id="priority" required>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
+                <option value="High">High - 2 Days</option>
+                <option value="Medium">Medium - 4 Days</option>
+                <option value="Low">Low 6 - Days</option>
             </select>
         </div>
         <div class="form-group">

@@ -92,6 +92,7 @@ class Request extends CI_Controller {
             'reporter_phone' => $this->input->post('reporter_phone'),
             'request_date' => $this->input->post('request_date'),
             'category' => $this->input->post('category'),
+            'location' => $this->input->post('location'),
             'priority' => $priority,
             'request_title' => $this->input->post('request_title'),
             'request_description' => $this->input->post('request_description'),
@@ -207,7 +208,7 @@ class Request extends CI_Controller {
             $this->session->set_flashdata('error', 'Failed to update status.');
         }
         
-        redirect('complaint/detail/' . $id);
+        redirect('request/detail/' . $id);
     }
 
     public function insertLogUpdate($data) {

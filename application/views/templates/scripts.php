@@ -54,8 +54,23 @@
 <!-- scripts.php atau bagian bawah halaman -->
 <script>
     $(document).ready(function() {
-        // Inisialisasi DataTable dengan fitur Pagination dan Export buttons
         var table = $('#dataTable').DataTable({
+            "paging": true,
+            "pageLength": 10,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Inisialisasi DataTable dengan fitur Pagination dan Export buttons
+        var table = $('#dataTableRequest').DataTable({
             "paging": true,                // Enable pagination
             "pageLength": 10,              // Set the number of records per page
             "lengthChange": true,          // Allow the user to change the page length
@@ -64,6 +79,11 @@
             "info": true,                  // Show info like "Showing 1 to 10 of 100"
             "autoWidth": false,            // Disable auto width for table columns
             "responsive": true,            // Make the table responsive for small screens
+            // "dom": 'Bfrtip',               // Enable the Buttons extension
+            // "buttons": [
+            //     'excelHtml5'               // Tombol untuk export ke Excel
+            // ]
         });
     });
 </script>
+

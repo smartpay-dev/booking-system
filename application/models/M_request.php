@@ -5,6 +5,9 @@ class M_request extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        // $this->load->helper('url');
+        // $this->load->library('email');
+        // $this->load->model('M_request');
         $this->load->database();
     }
 

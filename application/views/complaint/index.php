@@ -34,9 +34,9 @@
         <div class="form-group">
             <label for="priority">Priority</label>
             <select class="form-control" name="priority" id="priority" required>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
+                <option value="High">High - 2 Days</option>
+                <option value="Medium">Medium - 4 Days</option>
+                <option value="Low">Low 6 - Days</option>
             </select>
         </div>
         <div class="form-group">

@@ -208,17 +208,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p><strong>Version 1.2.0 - Released on December 8, 2024</strong></p>
+                <p><strong>New Update - Released on December 12, 2024</strong></p>
                 <p>This update includes several important improvements and bug fixes to enhance the performance and stability of the application:</p>
                 <ul>
                     <li><strong>New Features:</strong></li>
                     <ul>
-                        <li>Added a new user dashboard for better management.</li>
-                        <li>Added a new menu <strong><a href="<?= base_url('request'); ?>">Request</a></strong>.</li>
+                        <li>Added a new table view request in dashboard menu.</li>
+                        <li>Added a new location input form to ticket creation menu and request menu.</li>
+                        <!-- <li>Added a new menu <strong><a href="<?= base_url('request'); ?>">Request</a></strong>.</li> -->
                     </ul>
                     <li><strong>Bug Fixes:</strong></li>
                     <ul>
-                        <li>Resolved issues related to ticket status updates.</li>\
+                        <li>-</li>
                     </ul>
                     <!-- <li><strong>Performance Enhancements:</strong></li>
                     <ul>
