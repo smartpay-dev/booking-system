@@ -2,15 +2,15 @@
     <h1 class="h3 mb-4 text-gray-800">Booking Form</h1>
     <form action="<?= base_url('request/submit_request'); ?>" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Name *</label>
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
         <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email">Email *</label>
             <input type="email" class="form-control" id="email" name="email" required>
         </div>
         <div class="form-group">
-            <label for="phone">Phone</label>
+            <label for="phone">Phone *</label>
             <input type="text" class="form-control" id="phone" name="phone" required>
         </div>
         <!-- <div class="form-group">
@@ -18,27 +18,27 @@
             <input type="text" class="form-control" id="room_name" name="room_name" required>
         </div> -->
         <div class="form-group">
-            <label for="room_name">Room Name</label>
+            <label for="room_name">Room Name *</label>
             <select class="form-control" name="room_name" id="room_name" required>
                 <option value="Room Meeting 1">Room Meeting 1</option>
                 <option value="Room Meeting 2">Room Meeting 2</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="start_time">Start Time</label>
+            <label for="start_time">Start Time *</label>
             <input type="time" class="form-control" id="start_time" name="start_time" required>
         </div>
         <div class="form-group">
-            <label for="end_time">End Time</label>
+            <label for="end_time">End Time *</label>
             <input type="time" class="form-control" id="end_time" name="end_time" required>
         </div>
         <div class="form-group">
-            <label for="request_date">Request Date</label>
+            <label for="request_date">Request Date *</label>
             <input type="date" class="form-control" id="request_date" name="request_date" required>
         </div>
 
         <div class="form-group">
-            <label for="request_description">Request Description</label>
+            <label for="request_description">Request Description *</label>
             <textarea class="form-control" id="request_description" name="request_description" rows="4" required></textarea>
         </div>
 
