@@ -4,13 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_dashboard extends CI_Model {
 
     public function get_dashboard_data() {
-        $this->db->select('*');
-        $this->db->from('tb_complaint');
-        $this->db->where('status !=', 'resolved');
-        $this->db->or_where('status IS NULL');
-        $this->db->order_by('created_at', 'ASC'); 
-        $query = $this->db->get();
-        return $query->result();
+        $query = "SELECT id_ticket, name, email, phone, room_name, start_time, end_time, CONCAT(request_date, ' - ', start_time, ' - ', end_time) as start_end_time, request_date, file_name, request_description, status, user_request, SUBSTRING(created_at,1,10) as created_at 
+        FROM tb_request ORDER BY start_end_time DESC";
+        // $query = $this->db->get();
+        return $this->db->query($query)->result();
+        // return $query->result();
     }
 
     public function get_user_statistics() {

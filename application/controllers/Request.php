@@ -37,22 +37,9 @@ class Request extends CI_Controller {
     
     // input database
     public function submit_request() {
-        $priority = $this->input->post('priority');
         date_default_timezone_set('Asia/Jakarta');
-        $deadline = date('Y-m-d');
         
-        switch($priority) {
-            case 'High':
-                $deadline = date('Y-m-d', strtotime('+2 days'));
-                break;
-            case 'Medium': 
-                $deadline = date('Y-m-d', strtotime('+4 days'));
-                break;
-            case 'Low':
-                $deadline = date('Y-m-d', strtotime('+6 days'));
-                break;
-        }
-    
+        $status = 'reserved';
         $last_id = $this->M_request->generateIdTicket();
         $id_ticket = $last_id;
     
@@ -72,20 +59,27 @@ class Request extends CI_Controller {
         }
     
         $data = array(
-            'reporter_name' => $this->input->post('reporter_name'),
-            'reporter_email' => $this->input->post('reporter_email'),
-            'reporter_phone' => $this->input->post('reporter_phone'),
+            'name' => $this->input->post('name'),
+            'email' => $this->input->post('email'),
+            'phone' => $this->input->post('phone'),
+            'room_name' => $this->input->post('room_name'),
+            'start_time' => $this->input->post('start_time'),
+            'end_time' => $this->input->post('end_time'),
             'request_date' => $this->input->post('request_date'),
-            'category' => $this->input->post('category'),
-            'location' => $this->input->post('location'),
-            'priority' => $priority,
-            'request_title' => $this->input->post('request_title'),
             'request_description' => $this->input->post('request_description'),
-            'deadline_date' => $deadline,
-            'user_update' => $this->session->userdata('username'),
+            'user_request' => $this->session->userdata('username'),
+            'status' => $status,
             'id_ticket' => $id_ticket,
             'file_name' => $file_name
         );
+    
+        // Cek apakah data sudah ada di database
+        $existing_data = $this->M_request->checkExistingData($data['start_time'], $data['end_time'], $data['request_date'], $data['room_name']);
+        if ($existing_data) {
+            $this->session->set_flashdata('error', 'Data sudah ada');
+            redirect('request');
+            return;
+        }
     
         if ($this->M_request->saveRequest($data)) {
             $data['id'] = $this->M_request->getLastInsertedId();
@@ -94,7 +88,7 @@ class Request extends CI_Controller {
                 $this->M_request->saveFileName($data['id'], $file_name);
             }
     
-            $this->sendEmail($data['reporter_email'], $data['category'], $data, $file_name);
+            // $this->sendEmail($data['reporter_email'], $data['category'], $data, $file_name);
     
             $this->session->set_flashdata('success', 'The request was successfully sent');
         } else {
@@ -104,55 +98,55 @@ class Request extends CI_Controller {
         redirect('request');
     }
     
-    private function sendEmail($to, $category, $data, $file_name) {
-        $category_email = array(
-            'Network' => 'raharja.permana@centreparkcorp.com',
-            'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
-            'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com','topik.gunawan@centreparkcorp.com'],
-            'Infra' => 'm.fahmi@centreparkcorp.com',
-            'IT Support' => ['harry.djohardin@centreparkcorp.com', 'moh.hamam@centreparkcorp.com'],
-            // 'IT Support' => 'harry.djohardin@centreparkcorp.com',
-        );
+    // private function sendEmail($to, $category, $data, $file_name) {
+    //     $category_email = array(
+    //         'Network' => 'raharja.permana@centreparkcorp.com',
+    //         'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
+    //         'IOT System' => ['tejo.wurianto@centreparkcorp.com', 'deny.ruswandy@centreparkcorp.com','topik.gunawan@centreparkcorp.com'],
+    //         'Infra' => 'm.fahmi@centreparkcorp.com',
+    //         'IT Support' => ['harry.djohardin@centreparkcorp.com', 'moh.hamam@centreparkcorp.com'],
+    //         // 'IT Support' => 'harry.djohardin@centreparkcorp.com',
+    //     );
     
-        $category_email_cc = array(
-            'Network' => 'rofik47@gmail.com',
-            'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
-            'IOT System' => ['rofik47@gmail.com'],
-            'Infra' => 'rofik47@gmail.com',
-            'IT Support' => 'rofik47@gmail.com',
-        );
+    //     $category_email_cc = array(
+    //         'Network' => 'rofik47@gmail.com',
+    //         'Parkee System' => 'rofiq.rifiansyah@centreparkcorp.com',
+    //         'IOT System' => ['rofik47@gmail.com'],
+    //         'Infra' => 'rofik47@gmail.com',
+    //         'IT Support' => 'rofik47@gmail.com',
+    //     );
     
-        $cc_email = array_merge(['rofiq.rifiansyah@centreparkcorp.com', $this->session->userdata('user_email')]);
-        $cc_emails_string = implode(',', $cc_email);
-        $cc =  $cc_emails_string;
+    //     $cc_email = array_merge(['rofiq.rifiansyah@centreparkcorp.com', $this->session->userdata('user_email')]);
+    //     $cc_emails_string = implode(',', $cc_email);
+    //     $cc =  $cc_emails_string;
     
-        $this->email->from('cs.ho@centreparkcorp.com', 'Helpdesk Admin');
-        $this->email->to($category_email[$category]);
-        $this->email->cc($cc);
+    //     $this->email->from('cs.ho@centreparkcorp.com', 'Helpdesk Admin');
+    //     $this->email->to($category_email[$category]);
+    //     $this->email->cc($cc);
     
-        $this->email->subject($data['request_title']);
-        $link = base_url("request/detail/" . $data['id']);
+    //     $this->email->subject($data['request_title']);
+    //     $link = base_url("request/detail/" . $data['id']);
 
-        $file_url = base_url('uploads/' . $file_name);
+    //     $file_url = base_url('uploads/' . $file_name);
     
-        $message = "<h3>Request Report Data</h3>";
-        $message .= "<p><strong>Ticket Number :</strong> {$data['id_ticket']}</p>";
-        $message .= "<p><strong>Reporter Name:</strong> {$data['reporter_name']}</p>";
-        $message .= "<p><strong>Reporter Email:</strong> {$data['reporter_email']}</p>";
-        $message .= "<p><strong>Reporter Phone:</strong> {$data['reporter_phone']}</p>";
-        $message .= "<p><strong>Request Date:</strong> {$data['request_date']}</p>";
-        $message .= "<p><strong>Request Description:</strong><br>{$data['request_description']}</p>";
+    //     $message = "<h3>Request Report Data</h3>";
+    //     $message .= "<p><strong>Ticket Number :</strong> {$data['id_ticket']}</p>";
+    //     $message .= "<p><strong>Reporter Name:</strong> {$data['reporter_name']}</p>";
+    //     $message .= "<p><strong>Reporter Email:</strong> {$data['reporter_email']}</p>";
+    //     $message .= "<p><strong>Reporter Phone:</strong> {$data['reporter_phone']}</p>";
+    //     $message .= "<p><strong>Request Date:</strong> {$data['request_date']}</p>";
+    //     $message .= "<p><strong>Request Description:</strong><br>{$data['request_description']}</p>";
         
-        $message .= "<p><strong>File :</strong> <a href='{$file_url}' style='background-color: #4CAF50; color: white; padding: 3px 10px; text-decoration: none; display: inline-block;'>View</a></p>";
+    //     $message .= "<p><strong>File :</strong> <a href='{$file_url}' style='background-color: #4CAF50; color: white; padding: 3px 10px; text-decoration: none; display: inline-block;'>View</a></p>";
         
-        // $message .= "<p><a href='{$link}' style='background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; display: inline-block;'>View and Update Status</a></p>";
+    //     // $message .= "<p><a href='{$link}' style='background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; display: inline-block;'>View and Update Status</a></p>";
     
-        $this->email->message($message);
+    //     $this->email->message($message);
     
-        if (!$this->email->send()) {
-            echo $this->email->print_debugger();
-        }
-    }
+    //     if (!$this->email->send()) {
+    //         echo $this->email->print_debugger();
+    //     }
+    // }
     
 
     // view detail complaint

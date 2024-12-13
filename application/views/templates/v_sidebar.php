@@ -4,11 +4,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('dashboard'); ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-question-circle"></i>
+                    <i class="fas fa-book"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Helpdesk</div>
+                <div class="sidebar-brand-text mx-3">Booking System</div>
             </a>
 
             <!-- Divider -->
@@ -20,20 +20,11 @@
             </div> -->
 
             <!-- Nav Item - Dashboard -->
-            <?php if($this->session->userdata('user_teams') == 'Helpdesk' || $this->session->userdata('user_teams') == 'Dev'): ?>
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('dashboard'); ?>">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Dashboard</span></a>
             </li>
-            <?php else: ?>
-            <!-- Assigment Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('assigment'); ?>">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>My Assigment</span></a>
-            </li>
-            <?php endif; ?>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -43,12 +34,12 @@
                 Interface
             </div>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('complaint'); ?>">
                     <i class="fas fa-fw fa-comment"></i>
                     <span>Complaint</span>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('request'); ?>">
                         <i class="fas fa-fw fa-file-alt"></i>
@@ -89,12 +80,12 @@
                         <span>User Manage</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('maintenance'); ?>">
                         <i class="fas fa-fw fa-history"></i>
                         <span>Log Update History</span>
                     </a>
-                </li>
+                </li> -->
                 <?php endif; ?>
 
                 <!-- RND & DEVS TEAMS -->

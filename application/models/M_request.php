@@ -42,12 +42,20 @@ class M_request extends CI_Model {
     public function generateIdTicket() {
         $query = $this->db->query("SELECT MAX(id)+1 AS last_id FROM tb_request");
         $row = $query->row();
-        $id_ticket = 'RQ-' . $row->last_id;
+        $id_ticket = 'BOOK-' . $row->last_id;
         return $id_ticket;
     }
 
     public function saveFileName($id, $file_name) {
         $this->db->where('id', $id);
         return $this->db->update('tb_request', ['file_name' => $file_name]);
+    }
+    public function checkExistingData($start_time, $end_time, $request_date, $room_name) {
+        $query = $this->db->query("SELECT * FROM tb_request WHERE start_time <= '$end_time' AND end_time >= '$start_time' AND request_date = '$request_date' AND room_name = '$room_name'");
+        if ($query->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -19,17 +19,6 @@ class Dashboard extends CI_Controller {
         $data['active_page'] = 'dashboard';
 
         $data['dashboard_data'] = $this->M_dashboard->get_dashboard_data();
-        $data['count_all_data'] = $this->M_dashboard->getAllTickets();
-        $data['count_data_progress'] = $this->M_dashboard->getTicketsInProgress();
-        $data['count_data_closed'] = $this->M_dashboard->getClosedTickets();
-        $data['count_data_cancelled'] = $this->M_dashboard->getCancelledTickets();
-
-        
-        $data['dashboard_data_request'] = $this->M_dashboard->get_dashboard_dataRequest();
-        $data['count_all_data_request'] = $this->M_dashboard->getAllTicketsRequest();
-        $data['count_data_progress_request'] = $this->M_dashboard->getTicketsInProgressRequest();
-        $data['count_data_closed_request'] = $this->M_dashboard->getClosedTicketsRequest();
-        $data['count_data_cancelled_request'] = $this->M_dashboard->getCancelledTicketsRequest();
         $data['content'] = 'dashboard/index';
 
         $this->load->view('templates/main', $data);

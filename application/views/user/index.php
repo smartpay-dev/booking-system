@@ -101,11 +101,7 @@
                     <div class="form-group">
                         <label>Teams</label>
                         <select class="form-control" name="user_teams" required>
-                            <option value="Helpdesk">Helpdesk</option>
-                            <option value="Network">Network</option>
-                            <option value="RnD_Development">RnD/Development</option>
-                            <option value="IT_Support">IT Support</option>
-                            <option value="Infra">Infra</option>
+                            <option value="Admin">Admin</option>
                         </select>
                     </div>
                 </div>
